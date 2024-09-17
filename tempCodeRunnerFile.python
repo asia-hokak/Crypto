@@ -1,0 +1,26 @@
+from itertools import cycle
+s = 'THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG'
+
+alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+key = 'ABC'
+cipher = ""
+plaintext = ""
+
+for c1, c2 in zip(s, cycle(key)):
+    if ord('A') <= ord(c1) <= ord('Z'):
+        c = ((ord(c1) - ord('A')) + (ord(c2) - ord('A')))% 26
+        cipher += chr(c + ord('A'))
+    else:
+        cipher += c1
+
+print(cipher)
+
+
+for c1, c2 in zip(cipher, cycle(key)):
+    if ord('A') <= ord(c1) <= ord('Z'):
+        c = ((ord(c1) - ord('A')) - (ord(c2) - ord('A')))% 26
+        plaintext += chr(c + ord('A'))
+    else:
+        plaintext += c1
+
+print(plaintext)
